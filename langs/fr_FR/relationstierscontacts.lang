@@ -1,0 +1,88 @@
+# Dolibarr language file - fr_FR - relationstierscontacts
+CHARSET=UTF-8
+Module163019Name=RelationsTiersContacts
+Module163019Desc=Module spécifique pour RelationsTiersContacts
+
+#
+# Config module
+#
+RTCRelationContactTabLabel = Relation
+
+#
+# Permissions
+#
+Permission163041 = Consulter les relations contacts
+Permission163042 = Créer/modifier les relations contacts
+Permission163043 = Supprimer les relations contacts
+Permission163044 = Consulter les relations de collectifs
+Permission163045 = Créer/modifier les relations de collectifs
+Permission163046 = Supprimer les relations de collectifs
+
+#
+# Admin
+#
+RelationsTiersContactsSetup = Configuration du module RelationsTiersContacts
+
+# Dictionaries
+RTCRelationContactDictionaryLabel = Relations entre contacts
+RTCRelationContactLabelAB         = Libellé relation A vers B
+RTCRelationContactLabelBA         = Libellé relation B vers A
+RTCRelationTiersDictionaryLabel   = Relations entre colletifs/contacts
+RTCRelationTiersLabelAB           = Libellé relation Collectif vers Contact
+RTCRelationTiersLabelBA           = Libellé relation Contact vers Collectif
+
+#
+# Tab RelationContact
+#
+RTCRelationContactSocpeople  = Contact
+RTCRelationContactLabel      = Libellé de la relation
+RTCRelationContactListTitle  = Liste des relations
+RTCRelationContactAddTitle   = Ajouter une relation
+RTCRelationContactModify     = Modifier la relation
+RTCRelationContactDelete     = Supprimer la relation
+
+#
+# Tab RelationTiers
+#
+RTCRelationTiersThirdparty      = Collectif
+RTCRelationTiersSocpeople      = Contact
+RTCRelationTiersLabel          = Libellé de la relation
+RTCRelationTiersListTitle      = Liste des relations
+RTCRelationTiersCreate         = Créer relation
+RTCRelationTiersModify         = Modifier la relation
+RTCRelationTiersDelete         = Supprimer la relation
+RTCRelationTiersConfirmDelete  = Etes-vous sûr de vouloir supprimmer cette relation ?
+RTCRelationTiersDateStartLabel = Date de début de la relation
+RTCRelationTiersDateEndLabel   = Date de fin de la relation
+RTCRelationTiersCommentLabel   = Commentaire de la relation
+RTCRelationTiersMainThirdparty = Collectif principal
+RTCRelationTiersListChildTitle = Liste des relations des filiales
+RTCRelationTiersBegin          = Début
+RTCRelationTiersEnd          = Fin
+
+#
+# Notification / Agenda
+#
+ActionAC_RTC                                    = Relations Collectifs/Contacts
+Notify_RELATIONTIERS_CREATE                     = Relation de collectif créée
+Notify_RELATIONTIERS_MODIFY                     = Relation de collectif modifiée
+Notify_RELATIONTIERS_DELETE                     = Relation de collectif supprimée
+Notify_RELATIONCONTACT_CREATE                   = Relation contact créée
+Notify_RELATIONCONTACT_MODIFY                   = Relation contact modifiée
+Notify_RELATIONCONTACT_DELETE                   = Relation contact supprimée
+
+RTCRelationTiersNewRelationTiersToDolibarr      = Relation entre "%s" et "%s" créée
+RTCRelationTiersModifiedInDolibarr              = Relation entre "%s" et "%s" modifiée
+RTCRelationTiersDeletedInDolibarr               = Relation entre "%s" et "%s" supprimée
+RTCRelationContactNewRelationContactToDolibarr  = Relation entre "%s" et "%s" créée
+RTCRelationContactModifiedInDolibarr            = Relation entre "%s" et "%s" modifiée
+RTCRelationContactDeletedInDolibarr             = Relation entre "%s" et "%s" supprimée
+RTCRelationTiersActionCommLabel                 = Relation entre "%s" et "%s"
+
+#
+# Error
+#
+RTCErrorRelationContactDictionaryNoLines   = Aucune ligne dans le dictionnaire des relations entre contacts
+RTCErrorRelationTiersDictionaryNoLines     = Aucune ligne dans le dictionnaire des relations entre collectifs et contacts
+RTCErrorRelationTiersActionCommExists      = Cet événement est lié à une relation
+RTCErrorRelationTiersDateStartSupToDateEnd = Date de début supérieure à la date de fin

@@ -1,0 +1,89 @@
+# Dolibarr language file - en_US - relationstierscontacts
+CHARSET=UTF-8
+Module163019Name=RelationsTiersContacts
+Module163019Desc=Specific module for RelationsTiersContacts
+
+#
+# Config module
+#
+RTCRelationContactTabLabel = Relation
+
+#
+# Permissions
+#
+Permission163041 = Read contacts relations
+Permission163042 = Create/modify contacts relations
+Permission163043 = Delete contacts relations
+Permission163044 = Read thirdparties relations
+Permission163045 = Create/modify thirdparties relations
+Permission163046 = Delete thirdparties relations
+
+#
+# Admin
+#
+RelationsTiersContactsSetup = Configuration of module RelationsTiersContacts
+
+# Dictionaries
+RTCRelationContactDictionaryLabel = Relations between contacts
+RTCRelationContactLabelAB         = Relation label A to B
+RTCRelationContactLabelBA         = Relation label B to A
+RTCRelationTiersDictionaryLabel   = Relations between thirdparties/contacts
+RTCRelationTiersLabelAB           = Relation label Thirdparty to Contact
+RTCRelationTiersLabelBA           = Relation label Contact to Thirdparty
+
+#
+# Tab RelationContact
+#
+RTCRelationContactSocpeople = Contact
+RTCRelationContactLabel     = Relation label
+RTCRelationContactListTitle = Relations list
+RTCRelationContactAddTitle  = Add a relation
+RTCRelationContactModify    = Modify relation
+RTCRelationContactDelete    = Delete relation
+
+#
+# Tab RelationTiers
+#
+RTCRelationTiersThirdparty     = Thirdparty
+RTCRelationTiersSocpeople      = Contact
+RTCRelationTiersLabel          = Relation label
+RTCRelationTiersListTitle      = Relations list
+RTCRelationTiersCreate         = Create relation
+RTCRelationTiersModify         = Modify relation
+RTCRelationTiersDelete         = Delete relation
+RTCRelationTiersConfirmDelete  = Are you sure to delete this relation ?
+RTCRelationTiersDateStartLabel = Relation date start
+RTCRelationTiersDateEndLabel   = Relation date end
+RTCRelationTiersCommentLabel   = Relation comment
+RTCRelationTiersMainThirdparty = Main thirdparty
+RTCRelationTiersListChildTitle = Subsidiaries relations list
+RTCRelationTiersBegin          = Begin
+RTCRelationTiersEnd            = End
+
+#
+# Notification / Agenda
+#
+ActionAC_RTC                                    = Thirdparties/Contacts relations
+Notify_RELATIONTIERS_CREATE                     = Thirdparty relation created
+Notify_RELATIONTIERS_MODIFY                     = Thirdparty relation modified
+Notify_RELATIONTIERS_DELETE                     = Thirdparty relation deleted
+Notify_RELATIONCONTACT_CREATE                   = Contact relation created
+Notify_RELATIONCONTACT_MODIFY                   = Contact relation modified
+Notify_RELATIONCONTACT_DELETE                   = Contact relation deleted
+
+RTCRelationTiersNewRelationTiersToDolibarr      = Relation between "%s" and "%s" created
+RTCRelationTiersModifiedInDolibarr              = Relation between "%s" and "%s" modified
+RTCRelationTiersDeletedInDolibarr               = Relation between "%s" and "%s" deleted
+RTCRelationContactNewRelationContactToDolibarr  = Relation between "%s" and "%s" created
+RTCRelationContactModifiedInDolibarr            = Relation between "%s" and "%s" modified
+RTCRelationContactDeletedInDolibarr             = Relation between "%s" and "%s" deleted
+
+RTCRelationTiersActionCommLabel                 = Relation between "%s" and "%s"
+
+#
+# Error
+#
+RTCErrorRelationContactDictionaryNoLines   = No lines in dictionary relation contact
+RTCErrorRelationTiersDictionaryNoLines     = No lines in dictionary relation thirdparty
+RTCErrorRelationTiersActionCommExists      = Event linked to relation
+RTCErrorRelationTiersDateStartSupToDateEnd = End date upper than to end date
