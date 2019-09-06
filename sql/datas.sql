@@ -32,4 +32,4 @@ INSERT INTO llx_c_action_trigger (code,label,description,elementtype,rang) VALUE
  ('RELATIONCONTACT_DELETE','Relation contact deleted','Executed when a relation contact is deleted','relationstierscontacts',163019);
 
  INSERT INTO `llx_c_actioncomm` (`id`, `code`, `type`, `libelle`, `module`, `active`, `todo`, `color`, `picto`, `position`) VALUES
-(163019, 'AC_RTC', 'systemauto', 'Relations Tiers', 'rtc', 1, NULL, NULL, NULL, 30);
+(163017, 'AC_RTC', 'systemauto', 'Relations Tiers', 'rtc', 1, NULL, NULL, NULL, 30);

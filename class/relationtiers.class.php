@@ -757,6 +757,7 @@ class RelationTiers extends CommonObject
             if ($idActionComm > 0) {
                 return $idActionComm;
             } else {
+                $this->error  = $actioncomm->error;
                 $this->errors = $actioncomm->errors;
                 return -1;
             }

@@ -28,8 +28,8 @@ RTCRelationContactDictionaryLabel = Relations entre contacts
 RTCRelationContactLabelAB         = Libellé relation A vers B
 RTCRelationContactLabelBA         = Libellé relation B vers A
 RTCRelationTiersDictionaryLabel   = Relations entre colletifs/contacts
-RTCRelationTiersLabelAB           = Libellé relation Collectif vers Contact
-RTCRelationTiersLabelBA           = Libellé relation Contact vers Collectif
+RTCRelationTiersLabelAB           = Libellé relation Tiers vers Contact
+RTCRelationTiersLabelBA           = Libellé relation Contact vers Tiers
 
 #
 # Tab RelationContact
@@ -44,7 +44,7 @@ RTCRelationContactDelete     = Supprimer la relation
 #
 # Tab RelationTiers
 #
-RTCRelationTiersThirdparty      = Collectif
+RTCRelationTiersThirdparty     = Tiers
 RTCRelationTiersSocpeople      = Contact
 RTCRelationTiersLabel          = Libellé de la relation
 RTCRelationTiersListTitle      = Liste des relations
@@ -55,15 +55,15 @@ RTCRelationTiersConfirmDelete  = Etes-vous sûr de vouloir supprimmer cette rela
 RTCRelationTiersDateStartLabel = Date de début de la relation
 RTCRelationTiersDateEndLabel   = Date de fin de la relation
 RTCRelationTiersCommentLabel   = Commentaire de la relation
-RTCRelationTiersMainThirdparty = Collectif principal
+RTCRelationTiersMainThirdparty = Tiers principal
 RTCRelationTiersListChildTitle = Liste des relations des filiales
 RTCRelationTiersBegin          = Début
-RTCRelationTiersEnd          = Fin
+RTCRelationTiersEnd            = Fin
 
 #
 # Notification / Agenda
 #
-ActionAC_RTC                                    = Relations Collectifs/Contacts
+ActionAC_RTC                                    = Relations Tiers/Contacts
 Notify_RELATIONTIERS_CREATE                     = Relation de collectif créée
 Notify_RELATIONTIERS_MODIFY                     = Relation de collectif modifiée
 Notify_RELATIONTIERS_DELETE                     = Relation de collectif supprimée
