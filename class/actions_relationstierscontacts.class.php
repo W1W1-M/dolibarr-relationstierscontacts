@@ -81,7 +81,7 @@ class ActionsRelationsTiersContacts
      */
     function formObjectOptions($parameters, &$object, &$action, $hookmanager)
     {
-        global $langs;
+        global $conf, $langs;
 
         if (in_array('contactcard', explode(':', $parameters['context']))) {
 
@@ -156,15 +156,19 @@ class ActionsRelationsTiersContacts
                 $socid = GETPOST('socid','int');
                 $idRelationTiers = GETPOST('id_relationtiers','int');
 
+                // socid can be empty (set 0 not to update socid in socpeople)
+                if ($socid > 0) {
+                    $out .= '<input type="hidden" name="socid" value="' . $socid . '" />';
+                } else {
+                    $out .= '<input type="hidden" name="socid" value="0" />';
+                }
+
                 // id relation thirdparty
                 $relationTiers = new RelationTiers($this->db);
                 if ($idRelationTiers > 0) {
                     $relationTiers->fetch($idRelationTiers);
                     $out .= '<input type="hidden" name="id_relationtiers" value="'. $relationTiers->id . '" />';
                 }
-
-                // id of thirdparty
-                $out .= '<input type="hidden" name="socid" value="'. $socid . '" />';
 
                 if ($relationTiers->id > 0) {
                     // Relation Contact/Thirdparty
@@ -201,8 +205,12 @@ class ActionsRelationsTiersContacts
 
                 $out .= '<script type="text/javascript">';
                 $out .= 'jQuery(document).ready(function(){';
-                // delete line tr thirdparty selection
-                $out .= '   jQuery("select#socid").parent().parent().remove();';
+                // delete line tr thirdparty with select (add hidden socid input before)
+                if (empty($conf->global->COMPANY_USE_SEARCH_TO_SELECT)) {
+                    $out .= '   jQuery("select#socid").parent().parent().remove();';
+                } else {
+                    $out .= '   jQuery("#search_socid").parent().parent().remove();';
+                }
                 $out .= '});';
                 $out .= '</script>';
 

@@ -7,3 +7,6 @@ Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.co
 
 ## [1.0.1] - 11-06-2019
 - Compatibilité avec Dolibarr v9
+
+## [1.0.2] - 15-01-2021
+- Correction de la modification de la fiche d'un contact pour enlever la sélection du tiers lorsqu'on a un filtre de recherche au lieu d'un select
