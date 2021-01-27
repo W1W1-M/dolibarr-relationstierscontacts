@@ -10,3 +10,6 @@ Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.co
 
 ## [1.0.2] - 15-01-2021
 - Correction de la modification de la fiche d'un contact pour enlever la sélection du tiers lorsqu'on a un filtre de recherche au lieu d'un select
+
+## [1.0.3] - 27-01-2021
+- Modification des boutons d'ajout sur les onglets des "Contacts/Adresses" d'un tiers et sur l'onglet des "Tiers" d'un contact 
