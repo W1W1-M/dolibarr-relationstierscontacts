@@ -153,7 +153,8 @@ class ActionsRelationsTiersContacts
 
                 $out  = '';
 
-                $socid = GETPOST('socid','int');
+                //$socid = GETPOST('socid','int');
+                $socid = GETPOSTISSET('socid') ? GETPOST('socid','int') : $object->socid;
                 $idRelationTiers = GETPOST('id_relationtiers','int');
 
                 // socid can be empty (set 0 not to update socid in socpeople)
