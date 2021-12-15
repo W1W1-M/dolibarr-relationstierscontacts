@@ -707,10 +707,31 @@ class ActionsRelationsTiersContacts
 				// If external user: Check permission for external users
 				if ($user->socid > 0)
 				{
-					$sql = "SELECT COUNT(dbt.".$dbt_select.") as nb";
-					$sql .= " FROM ".MAIN_DB_PREFIX.$dbtablename." as dbt";
-					$sql .= " WHERE dbt.".$dbt_select." IN (".$objectid.")";
-					$sql .= " AND dbt.fk_soc = ".$user->socid;
+					if ($dbtablename == 'socpeople') {
+						$master_option = $conf->global->RELATIONSTIERSCONTACTS_CONTACT_MASTER;
+						$master_option = 0 < $master_option && $master_option <= 2 ? $master_option : 0;
+						$sql = "SELECT COUNT(dbt.".$dbt_select.") as nb";
+						$sql .= " FROM ".MAIN_DB_PREFIX.$dbtablename." as dbt";
+						$link = array();
+						if (empty($master_option) || $master_option == 1) {
+							$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "relationcontact as rc1 ON dbt.rowid = " . $this->db->ifsql('rc1.sens = 0', 'rc1.fk_socpeople_b', 'rc1.fk_socpeople_a');
+							$link[] = 'sp.rowid = ' . $this->db->ifsql('rc1.sens = 0', 'rc1.fk_socpeople_a', 'rc1.fk_socpeople_b');
+						}
+						if (empty($master_option) || $master_option == 2) {
+							$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "relationcontact as rc2 ON dbt.rowid = " . $this->db->ifsql('rc2.sens = 0', 'rc2.fk_socpeople_a', 'rc2.fk_socpeople_b');
+							$link[] = 'sp.rowid = ' . $this->db->ifsql('rc2.sens = 0', 'rc2.fk_socpeople_b', 'rc2.fk_socpeople_a');
+						}
+						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "socpeople as sp ON (" . implode(' OR ', $link) . ')';
+						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "societe as s ON s.rowid = sp.fk_soc";
+						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "user as u ON u.rowid = '" . $user->id . "' AND (u.fk_soc = s.rowid OR u.fk_socpeople = sp.rowid)";
+						$sql .= " WHERE dbt.".$dbt_select." IN (".$objectid.")";
+						$sql .= " AND (dbt.fk_soc = ".$user->socid . " OR u.rowid IS NOT NULL)"; // Contact not linked to a company or to a company of user
+					} else {
+						$sql = "SELECT COUNT(dbt.".$dbt_select.") as nb";
+						$sql .= " FROM ".MAIN_DB_PREFIX.$dbtablename." as dbt";
+						$sql .= " WHERE dbt.".$dbt_select." IN (".$objectid.")";
+						$sql .= " AND dbt.fk_soc = ".$user->socid;
+					}
 				}
 				// If internal user: Check permission for internal users that are restricted on their objects
 				elseif (!empty($conf->societe->enabled) && ($user->rights->societe->lire && !$user->rights->societe->client->voir))
@@ -731,7 +752,8 @@ class ActionsRelationsTiersContacts
 							$link[] = 'sp.rowid = ' . $this->db->ifsql('rc2.sens = 0', 'rc2.fk_socpeople_b', 'rc2.fk_socpeople_a');
 						}
 						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "socpeople as sp ON (" . implode(' OR ', $link) . ')';
-						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "user as u ON u.rowid = '" . $user->id . "' AND u.fk_socpeople = sp.rowid";
+						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "societe as s ON s.rowid = sp.fk_soc";
+						$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "user as u ON u.rowid = '" . $user->id . "' AND (u.fk_soc = s.rowid OR u.fk_socpeople = sp.rowid)";
 						$sql .= " WHERE dbt." . $dbt_select . " IN (" . $objectid . ")";
 						$sql .= " AND (dbt.fk_soc IS NULL OR sc.fk_soc IS NOT NULL OR u.rowid IS NOT NULL)"; // Contact not linked to a company or to a company of user
 						$sql .= " AND dbt.entity IN (" . getEntity($sharedelement, 1) . ")";
