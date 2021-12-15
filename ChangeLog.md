@@ -16,3 +16,6 @@ Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.co
 
 ## [1.0.4] - 29-03-2021
 - Correction de la modification de la fiche d'un contact lorsqu'il est déjà lié à un tiers
+
+## [1.0.5] - 15-12-2021
+- Ajout de l'acces au contact lié dans le cas ou l'on se connecte avec un utilisateur lié a un contact + variable globale RELATIONSTIERSCONTACTS_CONTACT_MASTER (=1 si A est master, =2 si B est master)
