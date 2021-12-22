@@ -116,12 +116,12 @@ class ActionsRelationsTiersContacts
 
                 // Date start
                 $out .= '<tr><td>' . $langs->trans('RTCRelationTiersDateStartLabel') . '</td><td>';
-                $out .= $form->select_date($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 1, '', 1, 1, 1);
+                $out .= $form->selectDate($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 1, '', 1, 1);
                 $out .= '</td></tr>';
 
                 // Date end
                 $out .= '<tr><td>' . $langs->trans('RTCRelationTiersDateEndLabel') . '</td><td>';
-                $out .= $form->select_date($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 1, '', 1, 1, 1);
+                $out .= $form->selectDate($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 1, '', 1, 1);
                 $out .= '</td></tr>';
 
                 // Comment
@@ -179,12 +179,12 @@ class ActionsRelationsTiersContacts
 
                     // Date start
                     $out .= '<tr><td>' . $langs->trans('RTCRelationTiersDateStartLabel') . '</td><td>';
-                    $out .= $form->select_date($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 1, '', 1, 1, 1);
+                    $out .= $form->selectDate($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 1, '', 1, 1);
                     $out .= '</td></tr>';
 
                     // Date end
                     $out .= '<tr><td>' . $langs->trans('RTCRelationTiersDateEndLabel') . '</td><td>';
-                    $out .= $form->select_date($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 1, '', 1, 1, 1);
+                    $out .= $form->selectDate($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 1, '', 1, 1);
                     $out .= '</td></tr>';
 
                     // Comment
@@ -214,6 +214,52 @@ class ActionsRelationsTiersContacts
                 }
                 $out .= '});';
                 $out .= '</script>';
+
+                $hookmanager->resPrint = $out;
+            }
+        } elseif (in_array('thirdpartycard', explode(':', $parameters['context']))) {
+            if ($action == 'create' && !empty($conf->global->THIRDPARTY_SUGGEST_ALSO_ADDRESS_CREATION)) {
+                dol_include_once('/relationstierscontacts/class/relationtiers.class.php');
+                dol_include_once('/relationstierscontacts/class/html.formrelationstierscontacts.class.php');
+
+                $langs->load('relationstierscontacts@relationstierscontacts');
+
+                $formRelationsTiersContacts = new FormRelationsTiersContacts($this->db);
+                $form = $formRelationsTiersContacts->form;
+
+                $out = '';
+
+                $formRelationFieldRequired = ' class="fieldrequired"';
+
+                $relationTiers = new RelationTiers($this->db);
+
+                // Relation Thirdparty/Contact with class "individualline" to work on change radio button "private"
+                $out .= '<tr class="individualline"><td' . $formRelationFieldRequired . '>' . $langs->trans('RTCRelationTiersLabel') . '</td><td>';
+                $out .= $formRelationsTiersContacts->selectAllRelationTiers('relationtiers', $relationTiers->fk_c_relationtiers, 1, 0, 0, '', 0, 0, 0, '', '', 0, '', 0, 0, 0);
+                $out .= '</td></tr>';
+
+                // Date start with class "individualline" to work on change radio button "private"
+                $out .= '<tr class="individualline"><td>' . $langs->trans('RTCRelationTiersDateStartLabel') . '</td><td>';
+                $out .= $form->selectDate($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 1, '', 1, 1);
+                $out .= '</td></tr>';
+
+                // Date end with class "individualline" to work on change radio button "private"
+                $out .= '<tr class="individualline"><td>' . $langs->trans('RTCRelationTiersDateEndLabel') . '</td><td>';
+                $out .= $form->selectDate($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 1, '', 1, 1);
+                $out .= '</td></tr>';
+
+                // Comment with class "individualline" to work on change radio button "private"
+                $out .= '<tr class="individualline"><td>' . $langs->trans('RTCRelationTiersCommentLabel') . '</td>';
+                $out .= '<td colspan="2">';
+                $out .= '<textarea class="flat quatrevingtpercent" id="relationtiers_commentaire" name="relationtiers_commentaire" rows="2">' . $relationTiers->commentaire . '</textarea>';
+                $out .= '</td>';
+                $out .= '</tr>';
+
+                // Main thirdparty by default
+                $formIsMainThirdpartyChecked = ' checked="checked"';
+                //$out .= '<tr><td>' . $langs->trans('RTCRelationTiersMainThirdparty') . '</td><td>';
+                $out .= '<input type="hidden" name="relationtiers_is_main_thirdparty" value="on"' . $formIsMainThirdpartyChecked . ' />';
+                //$out .= '</td></tr>';
 
                 $hookmanager->resPrint = $out;
             }

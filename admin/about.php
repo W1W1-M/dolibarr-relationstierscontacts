@@ -50,14 +50,14 @@ print "<br>\n";
 
 $head=relationstierscontacts_admin_prepare_head();
 
-dol_fiche_head($head, 'about', $langs->trans("About"), 0, 'action');
+print dol_get_fiche_head($head, 'about', $langs->trans("About"), 0, 'action');
 
 print '<table width="100%"><tr>'."\n";
 print '<td width="310px"><img src="../img/opendsi_dolibarr_preferred_partner.png" /></td>'."\n";
 print '<td align="left" valign="top"><p>'.$langs->trans("OpenDsiAboutDesc").'</p></td>'."\n";
 print '</tr></table>'."\n";
 
-dol_fiche_end();
+print dol_get_fiche_end();
 
 
 llxFooter();

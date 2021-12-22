@@ -282,14 +282,14 @@ else
             $formConfirmQuestion[] = array('label' => $langs->trans('RTCRelationTiersThirdparty'), 'type' => 'other', 'name' => 'relationtiers_socid', 'value' => $formConfirmSelectThirdparty);
 
             // date start
-            $formConfirmDateDebut = $form->select_date($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 0, '', 1, 1, 1);
+            $formConfirmDateDebut = $form->selectDate($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 0, '', 1, 1);
             $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_day');
             $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_month');
             $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_year');
             $formConfirmQuestion[] = array('label' => $langs->trans('RTCRelationTiersDateStartLabel'), 'type' => 'other', 'name' => 'relationtiers_datedebut_', 'value' => $formConfirmDateDebut);
 
             // date end
-            $formConfirmDateFin = $form->select_date($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 0, '', 1, 1, 1);
+            $formConfirmDateFin = $form->selectDate($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 0, '', 1, 1);
             $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_day');
             $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_month');
             $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_year');
@@ -328,7 +328,7 @@ else
 
         //dol_htmloutput_errors($error,$errors);
 
-        dol_fiche_head($head, 'rtc_relation_tiers_tab', $title, -1, 'contact');
+        print dol_get_fiche_head($head, 'rtc_relation_tiers_tab', $title, -1, 'contact');
 
         $linkback = '<a href="'.DOL_URL_ROOT.'/contact/list.php?restore_lastsearch_values=1">'.$langs->trans("BackToList").'</a>';
 
@@ -355,7 +355,7 @@ else
 
         print '</div>';
 
-        print dol_fiche_end();
+        print dol_get_fiche_end();
 
         print '<br />';
 

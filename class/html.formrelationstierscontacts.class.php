@@ -135,7 +135,7 @@ class FormRelationsTiersContacts
                     {
                         $more.='<tr><td>';
                         if (! empty($input['label'])) $more.=$input['label'].'</td><td valign="top" colspan="2" align="left">';
-                        $more.=$this->selectarray($input['name'],$input['values'],$input['default'],1,0,0,$moreattr,0,0,0,'',$morecss);
+                        $more.=$this->form->selectarray($input['name'],$input['values'],$input['default'],1,0,0,$moreattr,0,0,0,'',$morecss);
                         $more.='</td></tr>'."\n";
                     }
                     else if ($input['type'] == 'checkbox')
@@ -171,7 +171,7 @@ class FormRelationsTiersContacts
                     {
                         $more.='<tr><td>'.$input['label'].'</td>';
                         $more.='<td colspan="2" align="left">';
-                        $more.=$this->select_date($input['value'],$input['name'],0,0,0,'',1,0,1);
+                        $more.=$this->form->selectDate($input['value'], $input['name'], 0, 0, 0, '', 1, 0);
                         $more.='</td></tr>'."\n";
                         $formquestion[] = array('name'=>$input['name'].'day');
                         $formquestion[] = array('name'=>$input['name'].'month');

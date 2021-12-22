@@ -64,14 +64,14 @@ print "<br>\n";
 
 $head=relationstierscontacts_admin_prepare_head();
 
-dol_fiche_head($head, 'dictionaries', $langs->trans("Module163019Name"), 0, 'opendsi@relationstierscontacts');
+print dol_get_fiche_head($head, 'dictionaries', $langs->trans("Module163019Name"), 0, 'opendsi@relationstierscontacts');
 
 $moduleFilter = ''; // array or string to set the dictionaries of witch modules to show in dictionaries list
 $familyFilter = 'relationstierscontacts'; // array or string to set the dictionaries of witch family to show in dictionaries list
 
 include dol_buildpath('/advancedictionaries/core/tpl/dictionaries.tpl.php');
 
-dol_fiche_end();
+print dol_get_fiche_end();
 
 llxFooter();
 

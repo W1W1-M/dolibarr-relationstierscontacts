@@ -85,7 +85,7 @@ print "<br>\n";
 
 $head=relationstierscontacts_admin_prepare_head();
 
-dol_fiche_head($head, 'settings', $langs->trans("Parameters"), 0, 'action');
+print dol_get_fiche_head($head, 'settings', $langs->trans("Parameters"), 0, 'action');
 
 
 print '<br>';
@@ -104,12 +104,12 @@ print "</tr>\n";
 
 print '</table>';
 
-dol_fiche_end();
+print dol_get_fiche_end();
 
-print '<br>';
-print '<div align="center">';
-print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
-print '</div>';
+//print '<br>';
+//print '<div align="center">';
+//print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
+//print '</div>';
 
 print '</form>';
 

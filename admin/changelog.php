@@ -51,7 +51,7 @@ print "<br>\n";
 
 $head=relationstierscontacts_admin_prepare_head();
 
-dol_fiche_head($head, 'changelog', $langs->trans("OpenDsiChangeLog"), 0, 'action');
+print dol_get_fiche_head($head, 'changelog', $langs->trans("OpenDsiChangeLog"), 0, 'action');
 
 $changelog = opendsi_common_getChangeLog('relationstierscontacts');
 
@@ -59,7 +59,7 @@ print '<div class="moduledesclong">'."\n";
 print (!empty($changelog) ? $changelog : $langs->trans("NotAvailable"));
 print '<div>'."\n";
 
-dol_fiche_end();
+print dol_get_fiche_end();
 
 
 llxFooter();

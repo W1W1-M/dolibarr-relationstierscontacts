@@ -257,13 +257,13 @@ if (!empty($object->id)) $res=$object->fetch_optionals();
 
 $head = societe_prepare_head($object);
 
-dol_fiche_head($head, 'rtc_relation_tiers_tab', $langs->trans("ThirdParty"), 0, 'company');
+print dol_get_fiche_head($head, 'rtc_relation_tiers_tab', $langs->trans("ThirdParty"), 0, 'company');
 
 $linkback = '<a href="'.DOL_URL_ROOT.'/societe/list.php?restore_lastsearch_values=1">'.$langs->trans("BackToList").'</a>';
 
 dol_banner_tab($object, 'socid', $linkback, ($user->societe_id?0:1), 'rowid', 'nom', '', '', 0, '', '', 'arearefnobottom');
 
-dol_fiche_end();
+print dol_get_fiche_end();
 
 print '<br>';
 
@@ -294,14 +294,14 @@ if ($action != 'presend')
         $formConfirmQuestion[] = array('label' => $langs->trans('RTCRelationTiersSocpeople'), 'type' => 'other', 'name' => 'relationtiers_socpeople', 'value' => $formConfirmSelectContacts);
 
         // date start
-        $formConfirmDateDebut = $form->select_date($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 0, '', 1, 1, 1);
+        $formConfirmDateDebut = $form->selectDate($relationTiers->date_debut, 'relationtiers_datedebut_', 0, 0, 0, '', 1, 1);
         $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_day');
         $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_month');
         $formConfirmQuestion[] = array('name' => 'relationtiers_datedebut_year');
         $formConfirmQuestion[] = array('label' => $langs->trans('RTCRelationTiersDateStartLabel'), 'type' => 'other', 'name' => 'relationtiers_datedebut_', 'value' => $formConfirmDateDebut);
 
         // date end
-        $formConfirmDateFin = $form->select_date($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 0, '', 1, 1, 1);
+        $formConfirmDateFin = $form->selectDate($relationTiers->date_fin, 'relationtiers_datefin_', 0, 0, 0, '', 1, 1);
         $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_day');
         $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_month');
         $formConfirmQuestion[] = array('name' => 'relationtiers_datefin_year');

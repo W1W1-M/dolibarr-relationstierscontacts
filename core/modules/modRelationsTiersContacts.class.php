@@ -70,13 +70,17 @@ class modRelationsTiersContacts extends DolibarrModules
 		$this->editor_url = 'http://www.open-dsi.fr';
 		
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.0.5';
+		$this->version = '2.0.0';
 		// Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Name of image file used for this module.
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
-		$this->picto='opendsi@relationstierscontacts';
+        if((float)DOL_VERSION <= 11.0) {
+            $this->picto='opendsi@'.strtolower($this->name);
+        } else {
+            $this->picto='opendsi_big@'.strtolower($this->name);
+        }
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
 		// for default path (eg: /mymodule/core/xxxxx) (0=disable, 1=enable)
@@ -117,7 +121,7 @@ class modRelationsTiersContacts extends DolibarrModules
 		$this->requiredby = array();	// List of modules id to disable if this one is disabled
 		$this->conflictwith = array();	// List of modules id this module is in conflict with
 		$this->phpmin = array(5,0);					// Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(4,0);	// Minimum version of Dolibarr required by module
+		$this->need_dolibarr_version = array(9,0);	// Minimum version of Dolibarr required by module
 		$this->langfiles = array("relationstierscontacts@relationstierscontacts", "opendsi@relationstierscontacts");
         $langs->load('relationstierscontacts@relationstierscontacts');
 

@@ -1,7 +1,7 @@
 # Dolibarr language file - fr_FR - relationstierscontacts
 CHARSET=UTF-8
 Module163019Name=RelationsTiersContacts
-Module163019Desc=Module spécifique pour RelationsTiersContacts
+Module163019Desc=Gestion des relations tiers/contacts
 
 #
 # Config module
