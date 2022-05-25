@@ -924,4 +924,22 @@ class ActionsRelationsTiersContacts
 		}
 		return true;
 	}
+
+	/**
+	 * Function used to replace a thirdparty id with another one.
+	 *
+	 * @param DoliDB $db Database handler
+	 * @param int $origin_id Old thirdparty id
+	 * @param int $dest_id New thirdparty id
+	 * @return bool
+	 */
+	public function replaceThirdparty($parameters, $object, $action)
+	{
+		$tables = array('relationtiers');
+
+		// TODO test if a relation would be a duplicate. In that case, remove the old relation. If not, replace the fk_soc.
+
+		return (int) CommonObject::commonReplaceThirdparty($this->db, $parameters['soc_origin'], $parameters['soc_dest'], $tables);
+	}
+
 }
