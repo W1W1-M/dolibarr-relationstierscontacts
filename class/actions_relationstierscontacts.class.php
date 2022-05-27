@@ -935,11 +935,27 @@ class ActionsRelationsTiersContacts
 	 */
 	public function replaceThirdparty($parameters, $object, $action)
 	{
-		$tables = array('relationtiers');
+		$table = 'relationtiers';
 
-		// TODO test if a relation would be a duplicate. In that case, remove the old relation. If not, replace the fk_soc.
+		$sub_sql  = "SELECT fk_socpeople";
+		$sub_sql .= " FROM `".MAIN_DB_PREFIX.$table."`";
+		$sub_sql .= " WHERE fk_soc = " . (int) $parameters['soc_dest'];
 
-		return (int) CommonObject::commonReplaceThirdparty($this->db, $parameters['soc_origin'], $parameters['soc_dest'], $tables);
+		$sql  = 'UPDATE '.MAIN_DB_PREFIX.$table.' SET fk_soc = '.((int) $parameters['soc_dest']);
+		$sql .= ' WHERE fk_soc = '.((int) $parameters['soc_origin']);
+		$sql .= ' AND fk_socpeople NOT IN ('.$sub_sql.')';
+		if (!$this->db->query($sql)) {
+			return false;
+		}
+
+		// remove useless duplicates from origin fk_soc
+		$sql  = "DELETE FROM ".MAIN_DB_PREFIX.$table;
+		$sql .= " WHERE fk_soc = ".(int) $parameters['soc_origin'];
+		if (!$this->db->query($sql)) {
+			return false;
+		}
+
+		return true;
 	}
 
 }
