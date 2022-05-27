@@ -924,4 +924,38 @@ class ActionsRelationsTiersContacts
 		}
 		return true;
 	}
+
+	/**
+	 * Function used to replace a thirdparty id with another one.
+	 *
+	 * @param DoliDB $db Database handler
+	 * @param int $origin_id Old thirdparty id
+	 * @param int $dest_id New thirdparty id
+	 * @return bool
+	 */
+	public function replaceThirdparty($parameters, $object, $action)
+	{
+		$table = 'relationtiers';
+
+		$sub_sql  = "SELECT fk_socpeople";
+		$sub_sql .= " FROM `".MAIN_DB_PREFIX.$table."`";
+		$sub_sql .= " WHERE fk_soc = " . (int) $parameters['soc_dest'];
+
+		$sql  = 'UPDATE '.MAIN_DB_PREFIX.$table.' SET fk_soc = '.((int) $parameters['soc_dest']);
+		$sql .= ' WHERE fk_soc = '.((int) $parameters['soc_origin']);
+		$sql .= ' AND fk_socpeople NOT IN ('.$sub_sql.')';
+		if (!$this->db->query($sql)) {
+			return false;
+		}
+
+		// remove useless duplicates from origin fk_soc
+		$sql  = "DELETE FROM ".MAIN_DB_PREFIX.$table;
+		$sql .= " WHERE fk_soc = ".(int) $parameters['soc_origin'];
+		if (!$this->db->query($sql)) {
+			return false;
+		}
+
+		return true;
+	}
+
 }
