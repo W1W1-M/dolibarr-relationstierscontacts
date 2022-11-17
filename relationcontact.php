@@ -676,7 +676,8 @@ else
                 if ($user->rights->relationstierscontacts->relationcontact->creer)
                 {
                     print '<a href="' . $_SERVER['PHP_SELF'] . '?action=edit&id='. $object->id . '&id_relationcontact=' . $relationContactStatic->id . '">';
-                    print img_edit($langs->trans('RTCRelationContactModify'));
+					//print img_picto($langs->trans('RTCRelationContactModify'), 'fa-regular fa-hexagon-plus');
+					print '<i class="fa fa-user-pen" title="' . $langs->trans('RTCRelationContactModify') . '"></i>';
                     print '</a>';
                 }
 

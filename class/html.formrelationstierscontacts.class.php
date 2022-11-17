@@ -700,11 +700,11 @@ class FormRelationsTiersContacts
             if (version_compare(DOL_VERSION, '10.0.0', '>=')) {
                 // Easya compatibility
                 $class_fonts_awesome = !empty($conf->global->EASYA_VERSION) ? 'fal' : 'fa';
-                $newcardbutton .= dolGetButtonTitle($addrelationtiers, '', $class_fonts_awesome.' fa-plus-circle',  $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create');
+                $newcardbutton .= dolGetButtonTitle($addrelationtiers, '', $class_fonts_awesome.' fa-user-plus',  $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create');
             } else {
                 if ($newcardbutton) $newcardbutton .= ' | ';
                 $newcardbutton .= '<a class="butActionNew" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create"><span class="valignmiddle">' . $addrelationtiers . '</span>';
-                $newcardbutton .= '<span class="fa fa-plus-circle valignmiddle"></span>';
+                $newcardbutton .= '<span class="'.$class_fonts_awesome.' fa-user-plus valignmiddle"></span>';
                 $newcardbutton .= '</a>';
             }
         }
@@ -995,7 +995,8 @@ class FormRelationsTiersContacts
                 if ($user->rights->relationstierscontacts->relationtiers->creer)
                 {
                     print '<a href="' . $_SERVER['PHP_SELF'] . '?action=relation_edit&id='. $object->id . '&id_relationtiers=' . $relationTiersStatic->id . '">';
-                    print img_edit($langs->trans('RTCRelationTiersModify'));
+					//print img_picto($langs->trans('RTCRelationContactModify'), 'fa-regular fa-hexagon-plus');
+					print '<i class="fa fa-user-pen" title="' . $langs->trans('RTCRelationContactModify') . '"></i>';
                     print '</a>';
                 }
 
