@@ -57,15 +57,15 @@ if (! empty($conf->notification->enabled)) $langs->load("mails");
 
 $mesg=''; $error=0; $errors=array();
 
-$action		= (GETPOST('action','aZ09') ? GETPOST('action','aZ09') : 'view');
+$action		= GETPOST('action','aZ09') ?: 'view';
 $cancel     = GETPOST('cancel','alpha');
 $backtopage = GETPOST('backtopage','alpha');
 $confirm	= GETPOST('confirm');
-$socid		= GETPOST('socid','int')?GETPOST('socid','int'):GETPOST('id','int');
+$socid		= GETPOSTINT('socid') ?: GETPOSTINT('id');
 
 $idRelationTiers = GETPOST('id_relationtiers','int');
 
-if ($user->societe_id) $socid=$user->societe_id;
+if ($user->socid) $socid=$user->socid;
 if (empty($socid) && $action == 'view') $action='create';
 
 $object = new Societe($db);
@@ -261,7 +261,7 @@ print dol_get_fiche_head($head, 'rtc_relation_tiers_tab', $langs->trans("ThirdPa
 
 $linkback = '<a href="'.DOL_URL_ROOT.'/societe/list.php?restore_lastsearch_values=1">'.$langs->trans("BackToList").'</a>';
 
-dol_banner_tab($object, 'socid', $linkback, ($user->societe_id?0:1), 'rowid', 'nom', '', '', 0, '', '', 'arearefnobottom');
+dol_banner_tab($object, 'socid', $linkback, ($user->socid ? 0 : 1), 'rowid', 'nom', '', '', 0, '', '', 'arearefnobottom');
 
 print dol_get_fiche_end();
 
