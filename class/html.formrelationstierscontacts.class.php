@@ -626,7 +626,7 @@ class FormRelationsTiersContacts
         // Definition of fields for list
         $arrayfields=array(
             't.label_a_b'          => array('label'=>'RTCRelationTiersLabel', 'checked'=>1, 'position'=>1),
-            't.rowid'              => array('label'=>"TechnicalID", 'checked'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'enabled'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'position'=>1),
+            't.rowid'              => array('label'=>"TechnicalID", 'checked'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'enabled'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'position'=>1),
             't.name'               => array('label'=>"Name", 'checked'=>1, 'position'=>10),
             't.is_main_thirdparty' => array('label'=>'RTCRelationTiersMainThirdparty', 'checked'=>1, 'position'=>11),
             't.poste'              => array('label'=>"PostOrFunction", 'checked'=>1, 'position'=>20),
@@ -1086,7 +1086,7 @@ class FormRelationsTiersContacts
         $arrayfields=array(
             't.fk_soc' => array('label'=>'RTCRelationTiersThirdparty', 'checked'=>1, 'position'=>1),
             't.label_a_b' => array('label'=>'RTCRelationTiersLabel', 'checked'=>1, 'position'=>1),
-            't.rowid'=>array('label'=>"TechnicalID", 'checked'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'enabled'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'position'=>1),
+            't.rowid'=>array('label'=>"TechnicalID", 'checked'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'enabled'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'position'=>1),
             't.name'=>array('label'=>"Name", 'checked'=>1, 'position'=>10),
             't.poste'=>array('label'=>"PostOrFunction", 'checked'=>1, 'position'=>20),
             't.address'=>array('label'=>(empty($conf->dol_optimize_smallscreen) ? $langs->trans("Address").' / '.$langs->trans("Phone").' / '.$langs->trans("Email") : $langs->trans("Address")), 'checked'=>1, 'position'=>30),
