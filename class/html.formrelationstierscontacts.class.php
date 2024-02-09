@@ -636,22 +636,24 @@ class FormRelationsTiersContacts
             't.statut'             => array('label'=>"Status", 'checked'=>1, 'position'=>40, 'align'=>'center'),
         );
         // Extra fields
-        if (is_array($extrafields->attributes[$contactstatic->table_element]['label']) && count($extrafields->attributes[$contactstatic->table_element]['label']))
-        {
-            foreach($extrafields->attributes[$contactstatic->table_element]['label'] as $key => $val)
-            {
-                if (! empty($extrafields->attributes[$contactstatic->table_element]['list'][$key])) {
-                    // Load language if required
-                    if (! empty($extrafields->attributes[$contactstatic->table_element]['langfile'][$key])) $langs->load($extrafields->attributes[$contactstatic->table_element]['langfile'][$key]);
+		if(!empty($extrafields->attributes[$contactstatic->table_element]['label'])) {
+			if (is_array($extrafields->attributes[$contactstatic->table_element]['label']) && count($extrafields->attributes[$contactstatic->table_element]['label']))
+			{
+				foreach($extrafields->attributes[$contactstatic->table_element]['label'] as $key => $val)
+				{
+					if (! empty($extrafields->attributes[$contactstatic->table_element]['list'][$key])) {
+						// Load language if required
+						if (! empty($extrafields->attributes[$contactstatic->table_element]['langfile'][$key])) $langs->load($extrafields->attributes[$contactstatic->table_element]['langfile'][$key]);
 
-                    $arrayfields["ef.".$key]=array(
-                        'label'=>$extrafields->attributes[$contactstatic->table_element]['label'][$key],
-                        'checked'=>(($extrafields->attributes[$contactstatic->table_element]['list'][$key]<0)?0:1),
-                        'position'=>$extrafields->attributes[$contactstatic->table_element]['pos'][$key],
-                        'enabled'=>(abs($extrafields->attributes[$contactstatic->table_element]['list'][$key])!=3 && $extrafields->attributes[$contactstatic->table_element]['perms'][$key]));
-                }
-            }
-        }
+						$arrayfields["ef.".$key]=array(
+							'label'=>$extrafields->attributes[$contactstatic->table_element]['label'][$key],
+							'checked'=>(($extrafields->attributes[$contactstatic->table_element]['list'][$key]<0)?0:1),
+							'position'=>$extrafields->attributes[$contactstatic->table_element]['pos'][$key],
+							'enabled'=>(abs($extrafields->attributes[$contactstatic->table_element]['list'][$key])!=3 && $extrafields->attributes[$contactstatic->table_element]['perms'][$key]));
+					}
+				}
+			}
+		}
 
         // Initialize array of search criterias
         $search=array();
@@ -770,7 +772,7 @@ class FormRelationsTiersContacts
             if (! empty($arrayfields['t.'.$key]['checked']))
             {
                 print '<td class="liste_titre'.($align?' '.$align:'').'">';
-                if (in_array($key, array('lastname','name'))) print '<input type="text" class="flat maxwidth75" name="search_'.$key.'" value="'.dol_escape_htmltag($search[$key]).'">';
+                if (in_array($key, array('lastname','firstname'))) print '<input type="text" class="flat maxwidth75" name="search_'.$key.'" value="'.dol_escape_htmltag($search[$key]).'">';
                 elseif (in_array($key, array('statut'))) print $form->selectarray('search_status', array('-1'=>'','0'=>$contactstatic->LibStatut(0,1),'1'=>$contactstatic->LibStatut(1,1)),$search_status);
                 print '</td>';
             }
@@ -1093,19 +1095,21 @@ class FormRelationsTiersContacts
             't.statut'=>array('label'=>"Status", 'checked'=>1, 'position'=>40, 'align'=>'center'),
         );
         // Extra fields
-        if (is_array($extrafields->attributes[$contactstatic->table_element]['label']) && count($extrafields->attributes[$contactstatic->table_element]['label']))
-        {
-            foreach($extrafields->attributes[$contactstatic->table_element]['label'] as $key => $val)
-            {
-                if (! empty($extrafields->attributes[$contactstatic->table_element]['list'][$key])) {
-                    $arrayfields["ef.".$key]=array(
-                        'label'=>$extrafields->attributes[$contactstatic->table_element]['label'][$key],
-                        'checked'=>(($extrafields->attributes[$contactstatic->table_element]['list'][$key]<0)?0:1),
-                        'position'=>$extrafields->attributes[$contactstatic->table_element]['pos'][$key],
-                        'enabled'=>(abs($extrafields->attributes[$contactstatic->table_element]['list'][$key])!=3 && $extrafields->attributes[$contactstatic->table_element]['perms'][$key]));
-                }
-            }
-        }
+		if(!empty($extrafields->attributes[$contactstatic->table_element]['label'])) {
+			if (is_array($extrafields->attributes[$contactstatic->table_element]['label']) && count($extrafields->attributes[$contactstatic->table_element]['label']))
+			{
+				foreach($extrafields->attributes[$contactstatic->table_element]['label'] as $key => $val)
+				{
+					if (! empty($extrafields->attributes[$contactstatic->table_element]['list'][$key])) {
+						$arrayfields["ef.".$key]=array(
+							'label'=>$extrafields->attributes[$contactstatic->table_element]['label'][$key],
+							'checked'=>(($extrafields->attributes[$contactstatic->table_element]['list'][$key]<0)?0:1),
+							'position'=>$extrafields->attributes[$contactstatic->table_element]['pos'][$key],
+							'enabled'=>(abs($extrafields->attributes[$contactstatic->table_element]['list'][$key])!=3 && $extrafields->attributes[$contactstatic->table_element]['perms'][$key]));
+					}
+				}
+			}
+		}
 
         // Initialize array of search criterias
         $search=array();
@@ -1198,7 +1202,7 @@ class FormRelationsTiersContacts
             if (! empty($arrayfields['t.'.$key]['checked']))
             {
                 print '<td class="liste_titre'.($align?' '.$align:'').'">';
-                if (in_array($key, array('lastname','name'))) print '<input type="text" class="flat maxwidth75" name="search_'.$key.'" value="'.dol_escape_htmltag($search[$key]).'">';
+                if (in_array($key, array('lastname','firstname'))) print '<input type="text" class="flat maxwidth75" name="search_'.$key.'" value="'.dol_escape_htmltag($search[$key]).'">';
                 elseif (in_array($key, array('statut'))) print $form->selectarray('search_status', array('-1'=>'','0'=>$contactstatic->LibStatut(0,1),'1'=>$contactstatic->LibStatut(1,1)),$search_status);
                 print '</td>';
             }
