@@ -515,7 +515,7 @@ else
         print '</tr>'."\n";
 
         $sql1  = 'SELECT';
-        $sql1 .= ' t.rowid, t.lastname, t.firstname, t.fk_pays, t.civility, t.poste, t.phone, t.phone_mobile, t.phone_perso, t.fax, t.email, t.skype, t.statut, t.photo, t.address, t.zip, t.town';
+        $sql1 .= ' t.rowid, t.lastname, t.firstname, t.fk_pays, t.civility, t.poste, t.phone, t.phone_mobile, t.phone_perso, t.fax, t.email, t.socialnetworks, t.statut, t.photo, t.address, t.zip, t.town';
         $sql1 .= ', rc.rowid as rc_id, IF (rc.sens = 0, crc.label_a_b, crc.label_b_a) as relation_label';
         $sql1 .= ' FROM ' . MAIN_DB_PREFIX . 'relationcontact as rc';
         $sql1 .= ' LEFT JOIN ' . MAIN_DB_PREFIX . 'socpeople as spa ON spa.rowid = rc.fk_socpeople_a';
@@ -530,7 +530,7 @@ else
         include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 
         $sql2  = 'SELECT';
-        $sql2 .= ' t.rowid, t.lastname, t.firstname, t.fk_pays, t.civility, t.poste, t.phone, t.phone_mobile, t.phone_perso, t.fax, t.email, t.skype, t.statut, t.photo, t.address, t.zip, t.town';
+        $sql2 .= ' t.rowid, t.lastname, t.firstname, t.fk_pays, t.civility, t.poste, t.phone, t.phone_mobile, t.phone_perso, t.fax, t.email, t.socialnetworks, t.statut, t.photo, t.address, t.zip, t.town';
         $sql2 .= ', rc.rowid as rc_id, IF (rc.sens = 0, crc.label_b_a, crc.label_a_b) as relation_label';
         $sql2 .= ' FROM ' . MAIN_DB_PREFIX . 'relationcontact as rc';
         $sql2 .= ' LEFT JOIN ' . MAIN_DB_PREFIX . 'socpeople as t ON t.rowid = rc.fk_socpeople_a';
@@ -545,7 +545,7 @@ else
         include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 
         $sql  = 'SELECT';
-        $sql .= ' t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.skype, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town';
+        $sql .= ' t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.socialnetworks, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town';
         $sql .= ', t.rc_id, t.relation_label';
         $sql .= ' FROM (' . $sql1 . ' UNION ' . $sql2 . ') as t';
         if ($sortfield == "t.name") $sql.=" ORDER BY t.lastname $sortorder, t.firstname $sortorder";
@@ -580,7 +580,7 @@ else
                 $contactstatic->phone_perso = $obj->phone_perso;
                 $contactstatic->email = $obj->email;
                 $contactstatic->web = $obj->web;
-                $contactstatic->skype = $obj->skype;
+                $contactstatic->socialnetworks = $obj->socialnetworks;
                 $contactstatic->photo = $obj->photo;
 
                 $country_code = getCountry($obj->country_id, 2);

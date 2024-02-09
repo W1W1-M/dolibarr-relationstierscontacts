@@ -737,7 +737,7 @@ class FormRelationsTiersContacts
         $extrafieldsobjectkey=$contactstatic->table_element;
         include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
 
-        $sql  = "SELECT t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.skype, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town";
+        $sql  = "SELECT t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.socialnetworks, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town";
         $sql .= ", rt.rowid as rt_id, rt.fk_soc as rt_socid, rt.date_debut, rt.date_fin, crt.label_a_b as relation_label";
         $sql .= " FROM " . MAIN_DB_PREFIX . "relationtiers as rt";
         $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "socpeople as t ON t.rowid = rt.fk_socpeople";
@@ -873,7 +873,7 @@ class FormRelationsTiersContacts
                 $contactstatic->phone_perso = $obj->phone_perso;
                 $contactstatic->email = $obj->email;
                 $contactstatic->web = $obj->web;
-                $contactstatic->skype = $obj->skype;
+                $contactstatic->socialnetworks = $obj->socialnetworks;
                 $contactstatic->photo = $obj->photo;
 
                 $country_code = getCountry($obj->country_id, 2);
@@ -1164,7 +1164,7 @@ class FormRelationsTiersContacts
         $allChildIdList = is_array($allChildIdList) ? $allChildIdList : array();
         $allChildIdList[$object->id] = $object->id;
 
-        $sql  = "SELECT t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.skype, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town";
+        $sql  = "SELECT t.rowid, t.lastname, t.firstname, t.fk_pays as country_id, t.civility, t.poste, t.phone as phone_pro, t.phone_mobile, t.phone_perso, t.fax, t.email, t.socialnetworks, t.statut, t.photo, t.civility as civility_id, t.address, t.zip, t.town";
         $sql .= ", rt.rowid as rt_id, rt.fk_soc as rt_socid, crt.label_a_b as relation_label";
         $sql .= " FROM " . MAIN_DB_PREFIX . "relationtiers as rt";
         $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "socpeople as t ON t.rowid = rt.fk_socpeople";
@@ -1265,7 +1265,7 @@ class FormRelationsTiersContacts
                 $contactstatic->phone_perso = $obj->phone_perso;
                 $contactstatic->email = $obj->email;
                 $contactstatic->web = $obj->web;
-                $contactstatic->skype = $obj->skype;
+                $contactstatic->socialnetworks = $obj->socialnetworks;
                 $contactstatic->photo = $obj->photo;
 
                 $country_code = getCountry($obj->country_id, 2);
