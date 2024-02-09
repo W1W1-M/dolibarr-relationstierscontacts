@@ -85,7 +85,7 @@ class FormRelationsTiersContacts
      *     @param	int			$disableformtag		1=Disable form tag. Can be used if we are already inside a <form> section.
      *     @return 	string      	    			HTML ajax code if a confirm ajax popup is required, Pure HTML code if it's an html form
      */
-    function formconfirm($page, $title, $question, $action, $formquestion='', $selectedchoice='', $useajax=0, $height=200, $width=500, $disableformtag=0)
+    function formconfirm($page, $title, $question, $action, $formquestion=[], $selectedchoice='', $useajax=0, $height=200, $width=500, $disableformtag=0)
     {
         global $langs,$conf;
         global $useglobalvars;
@@ -106,10 +106,13 @@ class FormRelationsTiersContacts
             {
                 if (is_array($input) && ! empty($input))
                 {
-                    if ($input['type'] == 'hidden')
-                    {
-                        $more.='<input type="hidden" id="'.$input['name'].'" name="'.$input['name'].'" value="'.dol_escape_htmltag($input['value']).'">'."\n";
-                    }
+					if(isset($input['type'])) {
+						if ($input['type'] == 'hidden')
+						{
+							$more.='<input type="hidden" id="'.$input['name'].'" name="'.$input['name'].'" value="'.dol_escape_htmltag($input['value']).'">'."\n";
+						}
+					}
+
                 }
             }
 
@@ -124,76 +127,78 @@ class FormRelationsTiersContacts
                     $moreattr=(! empty($input['moreattr'])?' '.$input['moreattr']:'');
                     $morecss=(! empty($input['morecss'])?' '.$input['morecss']:'');
 
-                    if ($input['type'] == 'text')
-                    {
-                        $more.='<tr><td>'.$input['label'].'</td><td colspan="2" align="left"><input type="text" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$size.' value="'.$input['value'].'"'.$moreattr.' /></td></tr>'."\n";
-                    }
-                    else if ($input['type'] == 'password')
-                    {
-                        $more.='<tr><td>'.$input['label'].'</td><td colspan="2" align="left"><input type="password" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$size.' value="'.$input['value'].'"'.$moreattr.' /></td></tr>'."\n";
-                    }
-                    else if ($input['type'] == 'select')
-                    {
-                        $more.='<tr><td>';
-                        if (! empty($input['label'])) $more.=$input['label'].'</td><td valign="top" colspan="2" align="left">';
-                        $more.=$this->form->selectarray($input['name'],$input['values'],$input['default'],1,0,0,$moreattr,0,0,0,'',$morecss);
-                        $more.='</td></tr>'."\n";
-                    }
-                    else if ($input['type'] == 'checkbox')
-                    {
-                        $more.='<tr>';
-                        $more.='<td>'.$input['label'].' </td><td align="left">';
-                        $more.='<input type="checkbox" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$moreattr;
-                        if (! is_bool($input['value']) && $input['value'] != 'false' && $input['value'] != '0') $more.=' checked';
-                        if (is_bool($input['value']) && $input['value']) $more.=' checked';
-                        if (isset($input['disabled'])) $more.=' disabled';
-                        $more.=' /></td>';
-                        $more.='<td align="left">&nbsp;</td>';
-                        $more.='</tr>'."\n";
-                    }
-                    else if ($input['type'] == 'radio')
-                    {
-                        $i=0;
-                        foreach($input['values'] as $selkey => $selval)
-                        {
-                            $more.='<tr>';
-                            if ($i==0) $more.='<td class="tdtop">'.$input['label'].'</td>';
-                            else $more.='<td>&nbsp;</td>';
-                            $more.='<td width="20"><input type="radio" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'" value="'.$selkey.'"'.$moreattr;
-                            if ($input['disabled']) $more.=' disabled';
-                            $more.=' /></td>';
-                            $more.='<td align="left">';
-                            $more.=$selval;
-                            $more.='</td></tr>'."\n";
-                            $i++;
-                        }
-                    }
-                    else if ($input['type'] == 'date')
-                    {
-                        $more.='<tr><td>'.$input['label'].'</td>';
-                        $more.='<td colspan="2" align="left">';
-                        $more.=$this->form->selectDate($input['value'], $input['name'], 0, 0, 0, '', 1, 0);
-                        $more.='</td></tr>'."\n";
-                        $formquestion[] = array('name'=>$input['name'].'day');
-                        $formquestion[] = array('name'=>$input['name'].'month');
-                        $formquestion[] = array('name'=>$input['name'].'year');
-                        $formquestion[] = array('name'=>$input['name'].'hour');
-                        $formquestion[] = array('name'=>$input['name'].'min');
-                    }
-                    else if ($input['type'] == 'other')
-                    {
-                        $more.='<tr><td>';
-                        if (! empty($input['label'])) $more.=$input['label'].'</td><td colspan="2" align="left">';
-                        $more.=$input['value'];
-                        $more.='</td></tr>'."\n";
-                    }
+					if(isset($input['type'])) {
+						if ($input['type'] == 'text')
+						{
+							$more.='<tr><td>'.$input['label'].'</td><td colspan="2" align="left"><input type="text" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$size.' value="'.$input['value'].'"'.$moreattr.' /></td></tr>'."\n";
+						}
+						else if ($input['type'] == 'password')
+						{
+							$more.='<tr><td>'.$input['label'].'</td><td colspan="2" align="left"><input type="password" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$size.' value="'.$input['value'].'"'.$moreattr.' /></td></tr>'."\n";
+						}
+						else if ($input['type'] == 'select')
+						{
+							$more.='<tr><td>';
+							if (! empty($input['label'])) $more.=$input['label'].'</td><td valign="top" colspan="2" align="left">';
+							$more.=$this->form->selectarray($input['name'],$input['values'],$input['default'],1,0,0,$moreattr,0,0,0,'',$morecss);
+							$more.='</td></tr>'."\n";
+						}
+						else if ($input['type'] == 'checkbox')
+						{
+							$more.='<tr>';
+							$more.='<td>'.$input['label'].' </td><td align="left">';
+							$more.='<input type="checkbox" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'"'.$moreattr;
+							if (! is_bool($input['value']) && $input['value'] != 'false' && $input['value'] != '0') $more.=' checked';
+							if (is_bool($input['value']) && $input['value']) $more.=' checked';
+							if (isset($input['disabled'])) $more.=' disabled';
+							$more.=' /></td>';
+							$more.='<td align="left">&nbsp;</td>';
+							$more.='</tr>'."\n";
+						}
+						else if ($input['type'] == 'radio')
+						{
+							$i=0;
+							foreach($input['values'] as $selkey => $selval)
+							{
+								$more.='<tr>';
+								if ($i==0) $more.='<td class="tdtop">'.$input['label'].'</td>';
+								else $more.='<td>&nbsp;</td>';
+								$more.='<td width="20"><input type="radio" class="flat'.$morecss.'" id="'.$input['name'].'" name="'.$input['name'].'" value="'.$selkey.'"'.$moreattr;
+								if ($input['disabled']) $more.=' disabled';
+								$more.=' /></td>';
+								$more.='<td align="left">';
+								$more.=$selval;
+								$more.='</td></tr>'."\n";
+								$i++;
+							}
+						}
+						else if ($input['type'] == 'date')
+						{
+							$more.='<tr><td>'.$input['label'].'</td>';
+							$more.='<td colspan="2" align="left">';
+							$more.=$this->form->selectDate($input['value'], $input['name'], 0, 0, 0, '', 1, 0);
+							$more.='</td></tr>'."\n";
+							$formquestion[] = array('name'=>$input['name'].'day');
+							$formquestion[] = array('name'=>$input['name'].'month');
+							$formquestion[] = array('name'=>$input['name'].'year');
+							$formquestion[] = array('name'=>$input['name'].'hour');
+							$formquestion[] = array('name'=>$input['name'].'min');
+						}
+						else if ($input['type'] == 'other')
+						{
+							$more.='<tr><td>';
+							if (! empty($input['label'])) $more.=$input['label'].'</td><td colspan="2" align="left">';
+							$more.=$input['value'];
+							$more.='</td></tr>'."\n";
+						}
 
-                    else if ($input['type'] == 'onecolumn')
-                    {
-                        $more.='<tr><td colspan="3" align="left">';
-                        $more.=$input['value'];
-                        $more.='</td></tr>'."\n";
-                    }
+						else if ($input['type'] == 'onecolumn')
+						{
+							$more.='<tr><td colspan="3" align="left">';
+							$more.=$input['value'];
+							$more.='</td></tr>'."\n";
+						}
+					}
                 }
             }
             $more.='</table>'."\n";
