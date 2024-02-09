@@ -1,5 +1,6 @@
 <?php
-/* Copyright (C) 2018      Open-DSI             <support@open-dsi.fr>
+/* Copyright (C) 2018		Open-DSI			<support@open-dsi.fr>
+ * Copyright (C) 2024		William Mead		<w1w1_m@icloud.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -393,7 +394,7 @@ else
         // Definition of fields for list
         $arrayfields=array(
             't.relation_label' => array('label'=>'RTCRelationTiersLabel', 'checked'=>1, 'position'=>1),
-            't.rowid'          => array('label'=>"TechnicalID", 'checked'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'enabled'=>($conf->global->MAIN_SHOW_TECHNICAL_ID?1:0), 'position'=>2),
+            't.rowid'          => array('label'=>"TechnicalID", 'checked'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'enabled'=>(getDolGlobalString('MAIN_SHOW_TECHNICAL_ID')?1:0), 'position'=>2),
             't.nom'            => array('label'=>"Name", 'checked'=>1, 'position'=>10),
             't.rt_date_debut'  => array('label'=>"RTCRelationTiersDateStartLabel", 'checked'=>1, 'position'=>11),
             't.rt_date_fin'    => array('label'=>"RTCRelationTiersDateEndLabel", 'checked'=>1, 'position'=>12),
