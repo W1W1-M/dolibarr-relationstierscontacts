@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2018		Open-DSI			<support@open-dsi.fr>
- * Copyright (C) 2024		William Mead		<w1w1_m@icloud.com>
+ * Copyright (C) 2024		William Mead		<william.mead@manchenumerique.fr>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
