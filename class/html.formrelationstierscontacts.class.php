@@ -886,7 +886,6 @@ class FormRelationsTiersContacts
                 $contactstatic->phone_mobile = $obj->phone_mobile;
                 $contactstatic->phone_perso = $obj->phone_perso;
                 $contactstatic->email = $obj->email;
-                $contactstatic->web = $obj->web;
                 $contactstatic->socialnetworks = $obj->socialnetworks;
                 $contactstatic->photo = $obj->photo;
 
@@ -1280,7 +1279,6 @@ class FormRelationsTiersContacts
                 $contactstatic->phone_mobile = $obj->phone_mobile;
                 $contactstatic->phone_perso = $obj->phone_perso;
                 $contactstatic->email = $obj->email;
-                $contactstatic->web = $obj->web;
                 $contactstatic->socialnetworks = $obj->socialnetworks;
                 $contactstatic->photo = $obj->photo;
 
