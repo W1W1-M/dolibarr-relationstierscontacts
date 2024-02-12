@@ -694,10 +694,10 @@ class FormRelationsTiersContacts
             if (version_compare(DOL_VERSION, '10.0.0', '>=')) {
                 // Easya compatibility
                 $class_fonts_awesome = !empty($conf->global->EASYA_VERSION) ? 'fal' : 'fa';
-                $newcardbutton = dolGetButtonTitle($addcontact, '', $class_fonts_awesome.' fa-plus-circle', DOL_URL_ROOT.'/contact/card.php?socid='.$object->id.'&amp;action=create&amp;backtopage='.urlencode($backtopage));
+                $newcardbutton = dolGetButtonTitle($addcontact, '', $class_fonts_awesome.' fa-user-plus', DOL_URL_ROOT.'/contact/card.php?socid='.$object->id.'&amp;action=create&amp;backtopage='.urlencode($backtopage));
             } else {
                 $newcardbutton = '<a class="butActionNew" href="'.DOL_URL_ROOT.'/contact/card.php?socid='.$object->id.'&amp;action=create&amp;backtopage='.urlencode($backtopage).'"><span class="valignmiddle">'.$addcontact.'</span>';
-                $newcardbutton.= '<span class="fa fa-plus-circle valignmiddle"></span>';
+                $newcardbutton.= '<span class="fa fa-user-plus valignmiddle"></span>';
                 $newcardbutton.= '</a>';
             }
         }
@@ -708,11 +708,11 @@ class FormRelationsTiersContacts
             if (version_compare(DOL_VERSION, '10.0.0', '>=')) {
                 // Easya compatibility
                 $class_fonts_awesome = !empty($conf->global->EASYA_VERSION) ? 'fal' : 'fa';
-                $newcardbutton .= dolGetButtonTitle($addrelationtiers, '', $class_fonts_awesome.' fa-plus-circle',  $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create');
+                $newcardbutton .= dolGetButtonTitle($addrelationtiers, '', $class_fonts_awesome.' fa-link',  $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create');
             } else {
                 if ($newcardbutton) $newcardbutton .= ' | ';
                 $newcardbutton .= '<a class="butActionNew" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=relation_create"><span class="valignmiddle">' . $addrelationtiers . '</span>';
-                $newcardbutton .= '<span class="fa fa-plus-circle valignmiddle"></span>';
+                $newcardbutton .= '<span class="fa fa-link valignmiddle"></span>';
                 $newcardbutton .= '</a>';
             }
         }
