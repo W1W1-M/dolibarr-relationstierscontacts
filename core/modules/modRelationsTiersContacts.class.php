@@ -55,19 +55,21 @@ class modRelationsTiersContacts extends DolibarrModules
 
         // Family can be 'crm','financial','hr','projects','products','ecm','technic','interface','other'
         // It is used to group modules by family in module setup page
-        $this->family = "opendsi";
+        $this->family = "easya";
         // Module position in the family
         $this->module_position = 500;
         // Gives the possibility to the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-        $this->familyinfo = array('opendsi' => array('position' => '001', 'label' => $langs->trans("OpenDsiFamily")));
+        $this->familyinfo = array('easya' => array('position' => '001', 'label' => $langs->trans("easyaFamily")));
 
 		// Module label (no space allowed), used if translation string 'ModuleXXXName' not found (where XXX is value of numeric property 'numero' of module)
 		$this->name = preg_replace('/^mod/i','',get_class($this));
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "Description of module RelationsTiersContacts";
 		$this->descriptionlong = "";
-		$this->editor_name = 'Open-DSI';
-		$this->editor_url = 'http://www.open-dsi.fr';
+		$this->editor_name		= '<b>Easya Solutions</b> (Ex Open-Dsi)';
+		$this->editor_web		= 'https://easya.solutions';
+		$this->editor_url		= "https://easya.solutions";
+		$this->editor_email		= 'support@easya.solutions';
 		
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
 		$this->version = '2.1.0';
