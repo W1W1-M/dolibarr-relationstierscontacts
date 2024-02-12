@@ -792,8 +792,10 @@ class FormRelationsTiersContacts
 	        }
 
             $align='';
-            if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
-	        if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			if(is_array($val)) {
+				if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
+				if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			}
 	        if ($key == 'status' || $key == 'statut') $align.=($align?' ':'').'center';
             if (! empty($arrayfields['rt.'.$key]['checked']))
             {
@@ -824,8 +826,10 @@ class FormRelationsTiersContacts
         foreach($contactstatic->fields as $key => $val)
         {
             $align = isset($val['align']) ? $val['align'] : '';
-            if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
-            if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			if(is_array($val)) {
+				if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
+				if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			}
             if ($key == 'status' || $key == 'statut') $align.=($align?' ':'').'center';
             if (! empty($arrayfields['t.'.$key]['checked'])) print getTitleFieldOfList($arrayfields['t.'.$key]['label'], 0, $_SERVER['PHP_SELF'], isset($val['sort']) ? $val['sort'] : 't.'.$key, '', $param, ($align?'class="'.$align.'"':''), $sortfield, $sortorder, $align.' ')."\n";
         }
@@ -839,8 +843,10 @@ class FormRelationsTiersContacts
 		    }
 
             $align = isset($val['align']) ? $val['align'] : '';
-            if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
-            if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			if(is_array($val)) {
+				if (in_array($val['type'], array('date','datetime','timestamp'))) $align.=($align?' ':'').'center';
+				if (in_array($val['type'], array('timestamp'))) $align.=($align?' ':'').'nowrap';
+			}
             if ($key == 'status' || $key == 'statut') $align.=($align?' ':'').'center';
             if (! empty($arrayfields['rt.'.$key]['checked'])) print getTitleFieldOfList($arrayfields['rt.'.$key]['label'], 0, $_SERVER['PHP_SELF'], isset($val['sort']) ? $val['sort'] : 'rt.'.$key, '', $param, ($align?'class="'.$align.'"':''), $sortfield, $sortorder, $align.' ')."\n";
         }
