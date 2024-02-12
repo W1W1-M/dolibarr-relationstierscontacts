@@ -25,4 +25,4 @@ Le format du fichier est basé sur [Tenez un ChangeLog](http://keepachangelog.co
 - Ajout de la relation tiers/contact dans le formulaire de création de "tiers+contact" lorsque la constante "THIRDPARTY_SUGGEST_ALSO_ADDRESS_CREATION" est activée.
 
 ## [2.1.0] - 12-02-2024
-- Compatibilité avec Dolibarr v17
+- Compatibilité avec Dolibarr v19
