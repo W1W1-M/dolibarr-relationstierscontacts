@@ -1,8 +1,8 @@
 <?php
-/* Copyright (C) 2006-2011 Laurent Destailleur  <eldy@users.sourceforge.net>
- * Copyright (C) 2011      Regis Houssin        <regis.houssin@capnetworks.com>
- * Copyright (C) 2013-2014 Marcos García        <marcosgdf@gmail.com>
- * Copyright (C) 2018      Open-DSI             <support@open-dsi.fr>
+/* Copyright (C) 2006-2011 	Laurent Destailleur  	<eldy@users.sourceforge.net>
+ * Copyright (C) 2011      	Regis Houssin        	<regis.houssin@capnetworks.com>
+ * Copyright (C) 2013-2014 	Marcos García        	<marcosgdf@gmail.com>
+ * Copyright (C) 2018-2024	Easya Solutions			<support@easya.solutions>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
