@@ -1,11 +1,12 @@
 <?php
-/* Copyright (C) 2005-2017	Laurent Destailleur 	<eldy@users.sourceforge.net>
+/* Copyright (C) 2005-2017	Laurent Destailleur	<eldy@users.sourceforge.net>
  * Copyright (C) 2009-2017	Regis Houssin		<regis.houssin@capnetworks.com>
  * Copyright (C) 2011-2014	Juanjo Menent		<jmenent@2byte.es>
- * Copyright (C) 2013		Cedric GROSS			<c.gross@kreiz-it.fr>
+ * Copyright (C) 2013		Cedric GROSS		<c.gross@kreiz-it.fr>
  * Copyright (C) 2014		Marcos García		<marcosgdf@gmail.com>
- * Copyright (C) 2015		Bahfir Abbes			<bafbes@gmail.com>
+ * Copyright (C) 2015		Bahfir Abbes		<bafbes@gmail.com>
  * Copyright (C) 2024		William Mead		<william.mead@manchenumerique.fr>
+ * Copyright (C) 2024		Easya Solutions		<support@easya.solutions>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +19,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -31,12 +32,12 @@ require_once DOL_DOCUMENT_ROOT.'/core/triggers/dolibarrtriggers.class.php';
 
 
 /**
- *  Class of triggered functions for agenda module
+ *  Class of triggered functions for RelationsTiersContacts module
  */
 class InterfaceRTCAfterActionsAuto extends DolibarrTriggers
 {
 	public $family = 'agenda';
-	public $description = "Triggers of this module reaffect option of add action in agenda after standard trigger actions.";
+	public $description = "Triggers of this module RelationsTiersContacts.";
 	public $version = self::VERSION_DOLIBARR;
 	public $picto = 'action';
 
@@ -63,17 +64,17 @@ class InterfaceRTCAfterActionsAuto extends DolibarrTriggers
 	 */
 	public function runTrigger($action, $object, User $user, Translate $langs, Conf $conf)
 	{
-        if (empty($conf->agenda->enabled)) return 0;     // Module not active, we do nothing
+		if (empty($conf->agenda->enabled)) return 0; // Module not active, we do nothing
 
 		$key = 'MAIN_AGENDA_ACTIONAUTO_'.$action;
 
-		if(property_exists($object, 'skipstandardaction')) {
+		if (property_exists($object, 'skipstandardaction')) {
 			if ($object->skipstandardaction) {
 				unset($object->skipstandardaction);
 				$conf->global->$key = 1;
 			}
 		}
 
-        return 0;
-    }
+		return 0;
+	}
 }
