@@ -45,7 +45,7 @@ function relationstierscontacts_admin_prepare_head()
 	$h++;
 
 	$head[$h][0] = dol_buildpath("/relationstierscontacts/admin/about.php", 1);
-	$head[$h][1] = $langs->trans("About");
+	$head[$h][1] = $langs->trans("About") . " / " . $langs->trans("Support");
 	$head[$h][2] = 'about';
 	$h++;
 
