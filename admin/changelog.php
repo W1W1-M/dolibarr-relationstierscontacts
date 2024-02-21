@@ -48,10 +48,9 @@ $linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php">'.$langs->trans("BackToM
 print load_fiche_titre($langs->trans("RelationsTiersContactsSetup"), $linkback, 'title_setup');
 print "<br>\n";
 
-
 $head=relationstierscontacts_admin_prepare_head();
 
-print dol_get_fiche_head($head, 'changelog', $langs->trans("OpenDsiChangeLog"), 0, 'action');
+print dol_get_fiche_head($head, 'changelog', $langs->trans("Module163019Name"), 0, 'opendsi@relationstierscontacts');
 
 $changelog = opendsi_common_getChangeLog('relationstierscontacts');
 
@@ -60,7 +59,6 @@ print (!empty($changelog) ? $changelog : $langs->trans("NotAvailable"));
 print '<div>'."\n";
 
 print dol_get_fiche_end();
-
 
 llxFooter();
 $db->close();

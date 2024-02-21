@@ -82,6 +82,7 @@ class ActionsRelationsTiersContacts
 	{
 		global $conf, $langs;
 
+		$out = '';
 		if (in_array('contactcard', explode(':', $parameters['context']))) {
 			if ($action == 'create') {
 				dol_include_once('/relationstierscontacts/class/relationtiers.class.php');
@@ -91,8 +92,6 @@ class ActionsRelationsTiersContacts
 
 				$formRelationsTiersContacts = new FormRelationsTiersContacts($this->db);
 				$form = $formRelationsTiersContacts->form;
-
-				$out = '';
 
 				$socid = GETPOST('socid', 'int');
 
@@ -138,7 +137,7 @@ class ActionsRelationsTiersContacts
 				$out .= '<input type="checkbox" name="relationtiers_is_main_thirdparty" value="on"' . $formIsMainThirdpartyChecked . ' />';
 				$out .= '</td></tr>';
 
-				$hookmanager->resPrint = $out;
+				$this->resprints = $out;
 			} else {
 				if ($action == 'edit') {
 					dol_include_once('/relationstierscontacts/class/relationtiers.class.php');
@@ -148,8 +147,6 @@ class ActionsRelationsTiersContacts
 
 					$formRelationsTiersContacts = new FormRelationsTiersContacts($this->db);
 					$form = $formRelationsTiersContacts->form;
-
-					$out = '';
 
 					//$socid = GETPOST('socid','int');
 					$socid = GETPOSTISSET('socid') ? GETPOST('socid', 'int') : $object->socid;
@@ -204,7 +201,7 @@ class ActionsRelationsTiersContacts
 
 					$out .= '<script type="text/javascript">';
 					$out .= 'jQuery(document).ready(function(){';
-					// delete line tr thirdparty with select (add hidden socid input before)
+					// delete line "tr" third-party with select (add hidden socid input before)
 					if (empty($conf->global->COMPANY_USE_SEARCH_TO_SELECT)) {
 						$out .= '   jQuery("select#socid").parent().parent().remove();';
 					} else {
@@ -213,7 +210,7 @@ class ActionsRelationsTiersContacts
 					$out .= '});';
 					$out .= '</script>';
 
-					$hookmanager->resPrint = $out;
+					$this->resprints = $out;
 				}
 			}
 		} elseif (in_array('thirdpartycard', explode(':', $parameters['context']))) {
@@ -225,8 +222,6 @@ class ActionsRelationsTiersContacts
 
 				$formRelationsTiersContacts = new FormRelationsTiersContacts($this->db);
 				$form = $formRelationsTiersContacts->form;
-
-				$out = '';
 
 				$formRelationFieldRequired = ' class="fieldrequired"';
 
@@ -260,7 +255,7 @@ class ActionsRelationsTiersContacts
 				$out .= '<input type="hidden" name="relationtiers_is_main_thirdparty" value="on"' . $formIsMainThirdpartyChecked . ' />';
 				//$out .= '</td></tr>';
 
-				$hookmanager->resPrint = $out;
+				$this->resprints = $out;
 			}
 		}
 

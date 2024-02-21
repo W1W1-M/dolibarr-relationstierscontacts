@@ -85,8 +85,7 @@ print "<br>\n";
 
 $head = relationstierscontacts_admin_prepare_head();
 
-print dol_get_fiche_head($head, 'settings', $langs->trans("Parameters"), 0, 'action');
-
+print dol_get_fiche_head($head, 'settings', $langs->trans("Module163019Name"), 0, 'opendsi@relationstierscontacts');
 
 print '<br>';
 print '<form method="post" action="' . $_SERVER["PHP_SELF"] . '">';
@@ -105,11 +104,6 @@ print "</tr>\n";
 print '</table>';
 
 print dol_get_fiche_end();
-
-//print '<br>';
-//print '<div align="center">';
-//print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
-//print '</div>';
 
 print '</form>';
 
