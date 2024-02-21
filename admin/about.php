@@ -1,6 +1,6 @@
 <?php
-/* Copyright (C) 2007-2015 Laurent Destailleur  <eldy@users.sourceforge.net>
- * Copyright (C) 2018      Open-DSI             <support@open-dsi.fr>
+/* Copyright (C) 2007-2015	Laurent Destailleur  	<eldy@users.sourceforge.net>
+ * Copyright (C) 2018-2024  Easya Solutions			<support@easya.solutions>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -29,6 +29,7 @@ if (! $res && file_exists("../../../main.inc.php")) $res=@include '../../../main
 if (! $res) die("Include of main fails");
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 dol_include_once('/relationstierscontacts/lib/relationstierscontacts.lib.php');
+dol_include_once('/relationstierscontacts/core/modules/modRelationsTiersContacts.class.php');
 
 $langs->load("admin");
 $langs->load("relationstierscontacts@relationstierscontacts");
@@ -47,19 +48,36 @@ $linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php">'.$langs->trans("BackToM
 print load_fiche_titre($langs->trans("RelationsTiersContactsSetup"),$linkback,'title_setup');
 print "<br>\n";
 
-
 $head=relationstierscontacts_admin_prepare_head();
 
-print dol_get_fiche_head($head, 'about', $langs->trans("About"), 0, 'action');
+print dol_get_fiche_head($head, 'about', $langs->trans("Module163019Name"), 0, 'opendsi@relationstierscontacts');
 
-print '<table width="100%"><tr>'."\n";
-print '<td width="310px"><img src="../img/opendsi_dolibarr_preferred_partner.png" /></td>'."\n";
-print '<td align="left" valign="top"><p>'.$langs->trans("OpenDsiAboutDesc").'</p></td>'."\n";
-print '</tr></table>'."\n";
+$modClass = new modRelationsTiersContacts($db);
+$constantLastVersion = !empty($modClass->getVersion()) ? $modClass->getVersion() : 'NC';
+
+$supportvalue = "/*****"."<br>";
+$supportvalue.= " * Module : ".$langs->trans("Module163019Name")."<br>";
+$supportvalue.= " * Module version : ".$constantLastVersion."<br>";
+$supportvalue.= " * Dolibarr version : ".DOL_VERSION."<br>";
+$supportvalue.= " * Dolibarr version installation initiale : ".$conf->global->MAIN_VERSION_LAST_INSTALL."<br>";
+$supportvalue.= " * Version PHP : ".PHP_VERSION."<br>";
+$supportvalue.= " *****/"."<br>";
+$supportvalue.= "Description de votre problème :"."<br>";
+
+print '<table class="centpercent">';
+
+// Easya Solutions
+print '<tr>';
+print '<form id="ticket" method="POST" target="_blank" action="https://support.easya.solutions/create_ticket.php">';
+print '<input name=message type="hidden" value="'.$supportvalue.'" />';
+print '<input name=email type="hidden" value="'.$user->email.'" />';
+print '<td class="titlefield center"><img alt="Easya Solutions" src="../img/opendsi_dolibarr_preferred_partner.png" /></td>'."\n";
+print '<td class="left"><p>'.$langs->trans("OpenDsiAboutDesc1").' <button type="submit" >'.$langs->trans("OpenDsiAboutDesc2").'</button> '.$langs->trans("OpenDsiAboutDesc3").'</p></td>'."\n";
+print '</tr>'."\n";
+
+print '</table>'."\n";
 
 print dol_get_fiche_end();
 
-
 llxFooter();
-
 $db->close();
